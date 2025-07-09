@@ -24,7 +24,7 @@ jobs:
       - name: Select Xcode version
         uses: actions/xcode-select@v2
         with:
-          version: '16.1' # Ваша версия Xcode
+          version: '15.4' # Ваша версия Xcode
 
       # Шаг 3: Главная команда - сборка проекта
       - name: Build project
