@@ -1,0 +1,35 @@
+# Имя нашего Workflow, которое будет отображаться в GitHub
+name: iOS Build Check
+
+# Триггеры: когда запускать этот Workflow
+on:
+  # Запускать при создании или обновлении Pull Request'а, который нацелен на ветку main
+  pull_request:
+    branches: [ main ]
+
+# Задачи (jobs), которые нужно выполнить
+jobs:
+  # Название нашей задачи
+  build:
+    # Тип "бегуна" (виртуальной машины), на котором будет выполняться задача
+    runs-on: macos-latest
+
+    # Шаги (steps), которые нужно выполнить последовательно
+    steps:
+      # Шаг 1: Клонирование кода нашего репозитория на виртуальную машину
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Шаг 2: Выбор нужной версии Xcode
+      - name: Select Xcode version
+        uses: actions/xcode-select@v2
+        with:
+          version: '16.1' # Ваша версия Xcode
+
+      # Шаг 3: Главная команда - сборка проекта
+      - name: Build project
+        run: |
+          xcodebuild -project GlobeSales.xcodeproj \
+                     -scheme GlobeSales \
+                     -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+                     build
