@@ -1,3 +1,10 @@
+//
+//  TransactionDataModel.swift
+//  GlobeSales
+//
+//  Created by Иван Дроботов on 7/11/25.
+//
+
 import Foundation
 
 // MARK: - Transaction Data Layer Model

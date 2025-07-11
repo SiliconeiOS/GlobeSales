@@ -12,14 +12,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-        let transactionServise = TransactionService()
-        let transactions = transactionServise.loadTransactionsSafely()
-        print(transactions.count)
-        print(transactions[0].currency)
-        let rateService = RateService()
-        let rates = rateService.loadRatesSafely()
+        let fileReader = FileReaderService()
+        let rates = fileReader.loadSafely(RateDataModel.self, from: .rates)
         print(rates.count)
-        print(rates[0].from)
+        print(rates[0])
     }
 }
 
+private extension String {
+    static var rates: String { "rates" }
+}

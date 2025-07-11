@@ -1,3 +1,10 @@
+//
+//  RateModel.swift
+//  GlobeSales
+//
+//  Created by Иван Дроботов on 7/11/25.
+//
+
 import Foundation
 
 // MARK: - Transaction Domain Model
