@@ -1,8 +1,14 @@
+//
+//  RateModel.swift
+//  GlobeSales
+//
+//  Created by Иван Дроботов on 7/11/25.
+//
+
 import Foundation
 
 // MARK: - Rate Domain Model
 
-/// Domain модель для работы с курсами валют в бизнес-логике
 struct RateModel {
     let from: String
     let to: String
