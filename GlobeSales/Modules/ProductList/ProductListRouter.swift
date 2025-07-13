@@ -20,5 +20,9 @@ final class ProductListRouter: ProductListRouterProtocol {
     }
     
     func navigateToDetail(for sku: String, transactions: [TransactionModel]) {
+        let detailFactory = TransactionDetailFactory(dataManager: dataManager)
+        let context = TransactionDetailFactory.Context(sku: sku, transactions: transactions)
+        let detailVC = detailFactory.make(context: context)
+        viewController?.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
