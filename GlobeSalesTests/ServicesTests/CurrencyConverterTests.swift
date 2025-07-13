@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import GlobeSales // Замените на имя вашего модуля, если оно другое
+@testable import GlobeSales
 
 final class CurrencyConverterTests: XCTestCase {
 
