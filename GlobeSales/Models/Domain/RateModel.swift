@@ -22,12 +22,12 @@ extension RateModel {
         guard !dataModel.from.isEmpty else {
             throw RateMappingError.invalidFromCurrency
         }
+        
         guard !dataModel.to.isEmpty else {
             throw RateMappingError.invalidToCurrency
         }
-        guard let rate = Double(dataModel.rate),
-              rate > 0
-        else {
+        
+        guard let rate = Double(dataModel.rate), rate > 0 else {
             throw RateMappingError.invalidRate(dataModel.rate)
         }
         
@@ -42,7 +42,6 @@ extension RateModel {
 
 enum RateMappingError: Error, LocalizedError {
     case invalidRate(String)
-    case negativeRate(Double)
     case invalidFromCurrency
     case invalidToCurrency
     
@@ -50,8 +49,6 @@ enum RateMappingError: Error, LocalizedError {
         switch self {
         case .invalidRate(let rate):
             return "Invalid rate format: '\(rate)'"
-        case .negativeRate(let rate):
-            return "Rate must be positive, got: \(rate)"
         case .invalidFromCurrency:
             return "Source currency cannot be empty"
         case .invalidToCurrency:
@@ -66,4 +63,4 @@ extension RateModel: CustomStringConvertible {
     var description: String {
         return "Rate(from: \(from), to: \(to), rate: \(rate))"
     }
-} 
+}

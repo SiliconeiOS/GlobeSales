@@ -22,12 +22,12 @@ extension TransactionModel {
         guard !dataModel.sku.isEmpty else {
             throw TransactionMappingError.invalidSKU
         }
+        
         guard !dataModel.currency.isEmpty else {
             throw TransactionMappingError.invalidCurrency
         }
-        guard let amount = Double(dataModel.amount),
-              amount > 0
-        else {
+        
+        guard let amount = Double(dataModel.amount), amount > 0 else {
             throw TransactionMappingError.invalidAmount(dataModel.amount)
         }
         
