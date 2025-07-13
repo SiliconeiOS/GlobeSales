@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol FileReaderServiceProtocol {
+protocol FileReaderProtocol {
     func load<T: Codable>(_ type: T.Type, from fileName: String) throws -> [T]
     func loadSafely<T: Codable>(_ type: T.Type, from fileName: String) -> [T]
 }
 
-public final class FileReaderService: FileReaderServiceProtocol {
+public final class FileReader: FileReaderProtocol {
     
     private let bundle: Bundle
     
@@ -22,7 +22,7 @@ public final class FileReaderService: FileReaderServiceProtocol {
     
     func load<T>(_ type: T.Type, from fileName: String) throws -> [T] where T : Codable {
         guard let url = bundle.url(forResource: fileName, withExtension: .plist) else {
-            throw FileReaderServiceErorr.fileNotFound(fileName)
+            throw FileReaderErorr.fileNotFound(fileName)
         }
         
         do {
@@ -32,9 +32,9 @@ public final class FileReaderService: FileReaderServiceProtocol {
             
             return items
         } catch let decodingError as DecodingError {
-            throw FileReaderServiceErorr.decodingFailed(decodingError)
+            throw FileReaderErorr.decodingFailed(decodingError)
         } catch {
-            throw FileReaderServiceErorr.invalidData(error)
+            throw FileReaderErorr.invalidData(error)
         }
     }
     
@@ -48,7 +48,7 @@ public final class FileReaderService: FileReaderServiceProtocol {
     }
 }
 
-enum FileReaderServiceErorr: Error, LocalizedError {
+enum FileReaderErorr: Error, LocalizedError {
     case fileNotFound(String)
     case decodingFailed(Error)
     case invalidData(Error)

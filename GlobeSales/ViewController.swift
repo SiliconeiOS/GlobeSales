@@ -12,10 +12,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-        let fileReader = FileReaderService()
-        let rates = fileReader.loadSafely(RateDataModel.self, from: .rates)
-        print(rates.count)
-        print(rates[0])
+        let formatter = CurrencyFormatter()
+        let value: Double = 30.20
+        let currencyCode = "USD"
+        
+        // When
+        let formattedString = formatter.getCurrencyFormat(value: value, currencyCode: currencyCode)
+        print(formattedString)
     }
 }
 
