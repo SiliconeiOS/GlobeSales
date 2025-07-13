@@ -12,9 +12,16 @@ protocol FileReaderServiceProtocol {
     func loadSafely<T: Codable>(_ type: T.Type, from fileName: String) -> [T]
 }
 
-final class FileReaderService: FileReaderServiceProtocol {
+public final class FileReaderService: FileReaderServiceProtocol {
+    
+    private let bundle: Bundle
+    
+    init(bundle: Bundle = .main) {
+        self.bundle = bundle
+    }
+    
     func load<T>(_ type: T.Type, from fileName: String) throws -> [T] where T : Codable {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: .plist) else {
+        guard let url = bundle.url(forResource: fileName, withExtension: .plist) else {
             throw FileReaderServiceErorr.fileNotFound(fileName)
         }
         
