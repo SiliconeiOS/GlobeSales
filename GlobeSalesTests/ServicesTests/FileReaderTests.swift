@@ -16,9 +16,9 @@ struct TestRateModel: Codable, Equatable {
     let rate: String
 }
 
-final class FileReaderServiceTests: XCTestCase {
+final class FileReaderTests: XCTestCase {
 
-    private var fileReader: FileReaderServiceProtocol!
+    private var fileReader: FileReaderProtocol!
     private var testBundle: Bundle!
 
     // MARK: - Lifecycle
@@ -26,7 +26,7 @@ final class FileReaderServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         testBundle = Bundle(for: type(of: self))
-        fileReader = FileReaderService(bundle: testBundle)
+        fileReader = FileReader(bundle: testBundle)
     }
 
     override func tearDown() {
@@ -63,7 +63,7 @@ final class FileReaderServiceTests: XCTestCase {
         // When
         XCTAssertThrowsError(try fileReader.load(TestRateModel.self, from: nonExistentFileName)) { error in
             // Then
-            guard let serviceError = error as? FileReaderServiceErorr else {
+            guard let serviceError = error as? FileReaderErorr else {
                 return XCTFail("Была брошена ошибка неожиданного типа: \(type(of: error))")
             }
             
@@ -83,7 +83,7 @@ final class FileReaderServiceTests: XCTestCase {
         // When
         XCTAssertThrowsError(try fileReader.load(TestRateModel.self, from: invalidFileName)) { error in
             //Then
-            guard let serviceError = error as? FileReaderServiceErorr else {
+            guard let serviceError = error as? FileReaderErorr else {
                 return XCTFail("Была брошена ошибка неожиданного типа: \(type(of: error))")
             }
         
