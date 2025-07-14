@@ -24,7 +24,7 @@ final class DataManager: DataManagerProtocol {
             do {
                 return try RateModel(from: dataModel)
             } catch {
-                print("⚠️ Could not map RateDataModel: \(dataModel). Error: \(error.localizedDescription)")
+                Logger.error("Could not map RateDataModel: \(dataModel). Error: \(error.localizedDescription)")
                 return nil
             }
         }
@@ -35,11 +35,11 @@ final class DataManager: DataManagerProtocol {
             do {
                 return try TransactionModel(from: dataModel)
             } catch {
-                print("⚠️ Could not map TransactionDataModel: \(dataModel). Error: \(error.localizedDescription)")
+                Logger.error("⚠️ Could not map TransactionDataModel: \(dataModel). Error: \(error.localizedDescription)")
                 return nil
             }
         }
         
-        print("✅ DataManager initialized. Loaded \(self.transactions.count) transactions and \(rates.count) rates.")
+        Logger.info("DataManager initialized. Loaded \(self.transactions.count) transactions and \(rates.count) rates.")
     }
 }

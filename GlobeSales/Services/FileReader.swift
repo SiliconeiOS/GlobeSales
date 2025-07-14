@@ -42,7 +42,7 @@ public final class FileReader: FileReaderProtocol {
         do {
             return try load(type, from: fileName)
         } catch {
-            print("⚠️ PlistService: Failed to load \(fileName).plist - \(error.localizedDescription)")
+            Logger.error("⚠️ PlistService: Failed to load \(fileName).plist - \(error.localizedDescription)")
             return []
         }
     }
