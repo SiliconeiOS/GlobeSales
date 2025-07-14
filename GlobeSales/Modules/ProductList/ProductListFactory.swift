@@ -15,7 +15,9 @@ final class ProductListFactory {
     }
     
     func make() -> UIViewController {
-        let router = ProductListRouter(dataManager: dataManager)
+        let detailFactory = TransactionDetailFactory(dataManager: dataManager)
+        
+        let router = ProductListRouter(transactionDetailFactory: detailFactory)
         let presenter = ProductListPresenter(router: router, dataManager: dataManager)
         let viewController = ProductListViewController(presenter: presenter)
         

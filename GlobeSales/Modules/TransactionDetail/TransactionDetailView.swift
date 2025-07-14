@@ -57,6 +57,8 @@ final class TransactionDetailView: UIView {
     }
 }
 
+//MARK: - UITableViewDataSource, UITableViewDelegate
+
 extension TransactionDetailView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.transactions.count ?? 0
