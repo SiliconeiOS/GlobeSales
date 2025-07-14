@@ -48,7 +48,6 @@ final class FileReaderTests: XCTestCase {
             
             // Then
             XCTAssertEqual(loadedRates.count, 1, "Должен быть загружен 1 элемент")
-            print(loadedRates)
             XCTAssertEqual(loadedRates, expectedRates, "Загруженные данные не соответствуют ожидаемым")
             
         } catch {

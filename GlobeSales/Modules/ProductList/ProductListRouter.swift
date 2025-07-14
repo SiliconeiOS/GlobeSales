@@ -13,16 +13,15 @@ protocol ProductListRouterProtocol {
 
 final class ProductListRouter: ProductListRouterProtocol {
     weak var viewController: UIViewController?
-    private let dataManager: DataManagerProtocol
+    private let transactionDetailFactory: TransactionDetailFactory
     
-    init(dataManager: DataManagerProtocol) {
-        self.dataManager = dataManager
+    init(transactionDetailFactory: TransactionDetailFactory) {
+        self.transactionDetailFactory = transactionDetailFactory
     }
     
     func navigateToDetail(for sku: String, transactions: [TransactionModel]) {
-        let detailFactory = TransactionDetailFactory(dataManager: dataManager)
         let context = TransactionDetailFactory.Context(sku: sku, transactions: transactions)
-        let detailVC = detailFactory.make(context: context)
+        let detailVC = transactionDetailFactory.make(context: context)
         viewController?.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
