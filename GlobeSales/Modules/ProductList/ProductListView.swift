@@ -46,6 +46,8 @@ final class ProductListView: UIView {
     }
 }
 
+//MARK: - UITableViewDataSource, UITableViewDelegate
+
 extension ProductListView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.products.count ?? 0
